@@ -23,6 +23,7 @@
     # Handle NA's
       Skip <- is.na(Lat) | is.na(Lon)
       if(any(Skip)) Output[Skip] <- NA
+      if(all(Skip)) return(Output)
       
     # Convert Lat/Lon to DEM space
       Sp <- SpatialPoints(cbind(Lon[!Skip],Lat[!Skip]), proj4string=CRS(paste0("+proj=longlat +datum=",GpsDatum)))
